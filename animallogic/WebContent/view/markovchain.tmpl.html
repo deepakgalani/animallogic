@@ -1,0 +1,38 @@
+<div class="container">
+	<h2>Markov Chain Algorithm</h2>
+	
+	<form name="algorithmInputForm" novalidate ng-submit="generateText(markovchainrequest)">
+		<div class="form-group">
+			<span style="color:red" >{{errors}}</span>
+		</div>
+		<div class="form-group">
+			<label for="file">Select Text File:</label>
+			<input type="file" class="form-control file" name="file" ng-model="markovchainrequest.file" required  file-model accept=".txt">
+			<span style="color:red" ng-show="(algorithmInputForm.file.$dirty || algorithmInputForm.file.$touched) 
+			&& algorithmInputForm.file.$invalid	|| invalidFileType">
+				<span ng-show="algorithmInputForm.file.$error.required">File Path is required.</span>		
+				<span ng-show="invalidFileType">Please select a Text File.</span>
+			</span>
+		</div>
+		
+		<div class="form-group">
+			<label for="prefix">Prefix:</label>
+			<input type="text" class="form-control" placeholder="Enter Prefix" name="prefix" ng-model="markovchainrequest.prefix" required>
+			<span style="color:red" ng-show="(algorithmInputForm.prefix.$dirty || algorithmInputForm.prefix.$touched) && algorithmInputForm.prefix.$invalid">
+			<span ng-show="algorithmInputForm.prefix.$error.required">Prefix is required.</span>
+			</span>
+		</div>
+		
+		<div class="form-group">
+			<label for="suffix">Suffix:</label>
+			<input type="text" class="form-control" placeholder="Enter Suffix" name="suffix" ng-model="markovchainrequest.suffix" required>
+			<span style="color:red" ng-show="(algorithmInputForm.suffix.$dirty || algorithmInputForm.suffix.$touched) && algorithmInputForm.suffix.$invalid">
+			<span ng-show="algorithmInputForm.suffix.$error.required">Suffix is required.</span>
+			</span>
+		</div>
+		
+		<input type="submit" class="btn btn-default" ng-disabled="algorithmInputForm.prefix.$invalid || algorithmInputForm.file.$invalid || 
+		algorithmInputForm.suffix.$invalid || invalidFileType">
+		
+	</form>
+</div>
